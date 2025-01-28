@@ -5,8 +5,11 @@ def preprocess():
     train_ds = load_data(TRAIN_DATA_DIR)
     val_ds = load_data(VAL_DATA_DIR)
     test_ds = load_data(TEST_DATA_DIR)
-    
 
+    print('✅ loading data successful!')
+    print(f"The Train Data has {len(train_ds.class_names)} classes")
+    print(f"The Val Data has {len(val_ds.class_names)} classes")
+    print(f"The Test Data has {len(test_ds.class_names)} classes")
 
 if __name__ == '__main__':
     print(TEST_DATA_DIR)
