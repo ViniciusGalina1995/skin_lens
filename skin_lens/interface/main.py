@@ -2,6 +2,12 @@ from skin_lens.ml_logic.preprocessor import load_data
 from skin_lens.params import *
 
 def preprocess():
+    """
+    - Load data from local directory
+    - Process data ()
+    - Store processed data on your personal BQ (truncate existing table if it exists)
+    - No need to cache processed data as CSV (it will be cached when queried back from BQ during training)
+    """
     train_ds = load_data(TRAIN_DATA_DIR)
     val_ds = load_data(VAL_DATA_DIR)
     test_ds = load_data(TEST_DATA_DIR)
