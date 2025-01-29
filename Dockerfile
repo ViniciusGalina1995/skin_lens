@@ -1,5 +1,5 @@
 # python runtime as a base image
-FROM python:3.9-slim
+FROM python:3.10.6-buster
 
 WORKDIR /app
 
