@@ -1,26 +1,23 @@
-import numpy as np
 from PIL import Image
+import numpy as np
 import io
 
+import tensorflow as tf
+
+
 def preprocess_image(image_bytes):
-    image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-    # adjust to 128x128 or 224x224
-    image = image.resize((128, 128))
-    image = np.array(image) / 255.0
-    image = np.expand_dims(image, axis=0)
-    return image
+    image = Image.open(io.BytesIO(image_bytes))
+    image = image.resize((150, 150))
+    image_array = tf.keras.preprocessing.image.img_to_array(image)
 
-# import io
-# import numpy as np
-# from PIL import Image
-# import base64
+    #if len(image_array.shape) == 2:
+        #image_array = np.stack([image_array] * 3, axis=-1) --> Is this needed?
 
-# def preprocess_image(image_str: str):
-#     image_bytes = base64.b64decode(image_str)
+    if image_array.shape != (150, 150, 3):
+        raise ValueError(f"Input image must have shape (150, 150, 3), but got {image_array.shape}.")
 
-#     image = Image.open(io.BytesIO(image_bytes))
+    image_array = np.expand_dims(image_array, axis=0)
 
-#     image = image.resize((128, 128))
-#     image = np.array(image) / 255.0
-#     image = np.expand_dims(image, axis=0)
-#     return image
+    print(f"✅Processed image shape: {image_array.shape}")
+
+    return image_array
