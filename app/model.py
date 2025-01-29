@@ -2,7 +2,8 @@ import tensorflow as tf
 
 def load_model():
     # CNN model
-    model = tf.keras.models.load_model("model/model.h5")
+    model = tf.keras.models.load_model("models/model_baseline.keras")
+    print('✅Model loaded!')
     return model
 
 def predict(model, preprocessed_image):
