@@ -1,9 +1,11 @@
 # python runtime as a base image
 FROM python:3.10.6-buster
 
-WORKDIR /app
+#WORKDIR /app
 
-COPY . .
+COPY app /app
+COPY models /models
+COPY requirements.txt /requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 
