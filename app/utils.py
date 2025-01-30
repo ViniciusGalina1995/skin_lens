@@ -10,9 +10,6 @@ def preprocess_image(image_bytes):
     image = image.resize((150, 150))
     image_array = tf.keras.preprocessing.image.img_to_array(image)
 
-    #if len(image_array.shape) == 2:
-        #image_array = np.stack([image_array] * 3, axis=-1) --> Is this needed?
-
     if image_array.shape != (150, 150, 3):
         raise ValueError(f"Input image must have shape (150, 150, 3), but got {image_array.shape}.")
 
