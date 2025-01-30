@@ -1,41 +1,3 @@
-# # # # main.py
-# from fastapi import FastAPI, UploadFile, File
-# from app.model import load_model, predict
-# from app.utils import preprocess_image
-
-# app = FastAPI()
-
-# model = load_model()
-
-# CLASS_LABELS = [
-#     "Melanoma", "Nevus", "Basal Cell Carcinoma", "Actinic Keratosis",
-#     "Pigmented Benign Keratosis", "Dermatofibroma", "Vascular Lesion", "Squamous Cell Carcinoma",
-#     "Seborrheic Keratosis"
-# ]
-
-# @app.get("/")
-# def read_root():
-#     return {"message": "Welcome to the Skin Disease Prediction API"}
-
-# @app.post("/predict")
-# async def predict_skin_disease(file: UploadFile = File(...)):
-#     try:
-#         image_bytes = await file.read()
-
-#         # Preprocess the image
-#         image = preprocess_image(image_bytes)
-
-#         # Log the shape of the image before passing it to the model
-#         print(f"Image shape before model prediction: {image.shape}")
-
-#         predicted_class_idx = predict(model, image)
-
-#         predicted_class_name = CLASS_LABELS[predicted_class_idx]
-
-#         return {"prediction": predicted_class_name}
-
-#     except Exception as e:
-#         return {"error": str(e)}
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import HTMLResponse
 from app.model import load_model, predict
@@ -50,7 +12,6 @@ CLASS_LABELS = [
     "Pigmented Benign Keratosis", "Seborrheic Keratosis", "Squamous Cell Carcinoma", "Vascular Lesion"
 
 ]
-
 
 @app.get("/", response_class=HTMLResponse)
 def upload_form():
@@ -71,11 +32,27 @@ async def predict_skin_disease(file: UploadFile = File(...)):
     try:
         image_bytes = await file.read()
         image = preprocess_image(image_bytes)
-        predicted_class_idx = predict(model, image)
-        print(f'✅✅✅{predicted_class_idx}')
+
+        predictions, predicted_class_idx = predict(model, image)
+
         predicted_class_name = CLASS_LABELS[predicted_class_idx]
+        predicted_probability = predictions[0][predicted_class_idx]
 
-        return f"<h1>Predicted Disease: {predicted_class_name}</h1>"
+        print(f'✅✅✅Image scanned: The skin lesion is classified as {predicted_class_name} with a predicted probability of {predicted_probability * 100:.2f}%')
+        #print(f'✅✅✅ Confidence: {predicted_probability * 100:.2f}%')
 
+        return f"""
+        <h1>Image scanned: The skin lesion is classified as {predicted_class_name} with a predicted probability of {predicted_probability * 100:.2f}%.</h1>
+
+        """
+        # probabilities_text = "<br>".join(
+        #     [f"{CLASS_LABELS[i]}: {prob:.4f}" for i, prob in enumerate(predictions[0])]
+        # )
+
+        # return f"""
+        # <h1>Predicted Disease: {predicted_class_name}</h1>
+        # <h2>Prediction Probabilities:</h2>
+        # <p>{probabilities_text}</p>
+        # """
     except Exception as e:
         return f"<h1>Error: {str(e)}</h1>"
