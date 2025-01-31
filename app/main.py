@@ -22,11 +22,25 @@ async def predict_skin_disease(file: UploadFile = File(...)):
         image = preprocess_image(image_bytes)
 
         predictions, predicted_class_idx = predict(model, image)
+
         predicted_class_name = CLASS_LABELS[predicted_class_idx]
-        predicted_probability = predictions[0][predicted_class_idx]
-        print(f'✅✅✅Image scanned: The skin lesion is classified as {predicted_class_name} with a predicted probability of {predicted_probability * 100:.2f}%')
-        return f"""
-        <h1>Image scanned: The skin lesion is classified as {predicted_class_name} with a predicted probability of {predicted_probability * 100:.2f}%.</h1>
-        """
+        predicted_probability = round(predictions[0][predicted_class_idx] * 100, 2)
+
+        class_probabilities = {
+            CLASS_LABELS[i]: round(predictions[0][i] * 100, 2)
+            for i in range(len(CLASS_LABELS))
+        }
+
+        print(f'✅✅✅Image scanned: The skin lesion is classified as {predicted_class_name} with a predicted probability of {predicted_probability}%')
+
+        return {  # ✅ JSON Response
+            "prediction": {
+                "class": predicted_class_name,
+                "probability": predicted_probability
+            },
+            "all_class_probabilities": class_probabilities,
+            "message": f"Image scanned: Skin lesion classified as {predicted_class_name} with {predicted_probability}% probability"
+        }
+
     except Exception as e:
-        return f"<h1>Error: {str(e)}</h1>"
+        return {"error": str(e)}
