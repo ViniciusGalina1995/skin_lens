@@ -1,7 +1,7 @@
 import tensorflow as tf
 import os
 def load_model():
-    model_path = os.path.join(os.path.dirname(__file__), "..", "models", "model_baseline.keras")
+    model_path = os.path.join(os.path.dirname(__file__), "..", "models", "model_res101.keras")
     model = tf.keras.models.load_model(model_path)
     print("✅ Model loaded successfully!")
     #model.save("models/model_baseline.h5")
