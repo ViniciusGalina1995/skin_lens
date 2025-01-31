@@ -1,11 +1,8 @@
-run_preprocess:
-	python -c 'from skin_lens.interface.main import preprocess; preprocess()'
+docker_build_local:
+	docker build --tag=$(GAR_IMAGE):local .
 
-run_train:
-	python -c 'from skin_lens.interface.main import train; train()'
+docker_run_local:
+	docker run -it -e PORT=8000 -p 8000:8000 $(GAR_IMAGE):dev
 
-run_pred:
-	python -c 'from skin_lens.interface.main import pred; pred()'
-
-run_evaluate:
-	python -c 'from skin_lens.interface.main import evaluate; evaluate()'
+docker_run_local_interactively:
+	docker run -it -e PORT=8000 -p 8000:8000 $(GAR_IMAGE):dev bash
