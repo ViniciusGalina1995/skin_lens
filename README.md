@@ -63,13 +63,15 @@ The final application will be deployed on a cloud platform, ensuring accessibili
 
 ## Contributors
 
-[Your Name]
+Angelo Malacarne
+Bhagyalakshmi Ushakumari
+Diego Siguelnitzky
+Vinicius Lacorte Galina
 
 ## License
 
-[Specify the license under which your project is shared]
+[MIT]
 
 ---
 
 This README provides an overview of the project structure and objectives. Detailed implementation steps will be documented within the codebase and supporting files.
-
