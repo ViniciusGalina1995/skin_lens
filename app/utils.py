@@ -7,11 +7,11 @@ import tensorflow as tf
 
 def preprocess_image(image_bytes):
     image = Image.open(io.BytesIO(image_bytes))
-    image = image.resize((150, 150))
+    image = image.resize((224, 224))
     image_array = tf.keras.preprocessing.image.img_to_array(image)
 
-    if image_array.shape != (150, 150, 3):
-        raise ValueError(f"Input image must have shape (150, 150, 3), but got {image_array.shape}.")
+    if image_array.shape != (224, 224, 3):
+        raise ValueError(f"Input image must have shape (224, 224, 3), but got {image_array.shape}.")
 
     image_array = np.expand_dims(image_array, axis=0)
 
