@@ -31,4 +31,5 @@ def predict(model, preprocessed_image):
 
     predicted_class_idx = predictions.argmax(axis=1)[0]
     #return int(predicted_class_idx)
+
     return predictions, int(predicted_class_idx)

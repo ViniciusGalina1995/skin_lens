@@ -3,7 +3,6 @@ from app.model import load_model, predict
 from app.utils import preprocess_image
 
 app = FastAPI()
-
 model = load_model()
 
 CLASS_LABELS = [
