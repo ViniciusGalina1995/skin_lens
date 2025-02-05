@@ -57,6 +57,11 @@ The final application will be deployed on a cloud platform, ensuring accessibili
 
 Link of the web application: https://skinlensweb-35zsxjyv5xmpcefkqtzgu5.streamlit.app/
 
+## Reproducibility
+
+**After cloning the repo the model file has to be downloaded and pasted on the models folder!**
+[Link for the model](https://drive.google.com/file/d/1fo6d-z-mXrReLqQfjX5P7Q3UmCl44Tup/view?usp=sharing)
+
 ## Future Improvements
 
 - Incorporating additional datasets for broader disease coverage.
