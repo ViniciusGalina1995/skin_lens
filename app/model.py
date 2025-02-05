@@ -3,9 +3,7 @@ import os
 def load_model():
     """
     Loads and returns the trained skin disease prediction model.
-
     The model is loaded from the specified file path.
-
     Returns:
     tf.keras.Model: The loaded Keras model.
     """
@@ -17,12 +15,10 @@ def load_model():
 
 def predict(model, preprocessed_image):
     """
-    Predicts the class of the skin lesion from the preprocessed image using the model.
-
+    Predicts the class of the skin lesion from the preprocessed image using the model
     Args:
     model (tf.keras.Model): The loaded Keras model.
     preprocessed_image (numpy.ndarray): The preprocessed image suitable for prediction.
-
     Returns:
     tuple: A tuple containing the prediction array and the predicted class index.
     """

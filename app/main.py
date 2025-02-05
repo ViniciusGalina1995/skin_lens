@@ -14,9 +14,7 @@ CLASS_LABELS = [
 def welcome():
     """
     Welcome to the Skin Disease Prediction API.
-
     This API allows you to upload an image of a skin lesion and returns the predicted class and probability of the lesion.
-
     Available endpoints:
     - GET / : Returns a welcome message.
     - POST /predict : Upload an image and get the prediction of the skin lesion.
@@ -27,10 +25,8 @@ def welcome():
 async def predict_skin_disease(file: UploadFile = File(...)):
     """
     Predicts the skin disease from the uploaded image.
-
     Args:
     file (UploadFile): An image file of the skin lesion.
-
     Returns:
     dict: A dictionary containing the prediction class, probability,
           all class probabilities, and a message.

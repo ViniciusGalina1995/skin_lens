@@ -7,16 +7,12 @@ from tensorflow.keras.applications.convnext import preprocess_input
 def preprocess_image(image_bytes):
     """
     Preprocesses the input image for prediction by the skin disease model.
-
     This includes resizing the image, converting it to an array, and applying
     the preprocessor for the Transfer Learning model.
-
     Args:
     image_bytes (bytes): The raw bytes of the image file.
-
     Returns:
     numpy.ndarray: The preprocessed image array suitable for prediction.
-
     Raises:
     ValueError: If the image does not have the expected shape after resizing.
     """
