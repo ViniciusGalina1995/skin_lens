@@ -29,12 +29,12 @@ The dataset used for this project is sourced from Kaggle and can be accessed [he
 ### 2. Data Preprocessing and Augmentation
 
 - **Preprocessing**: Steps include resizing images, normalizing pixel values, and encoding labels.
-- **Augmentation**: Techniques such as rotation, flipping, zooming, and brightness adjustment will be applied to improve model robustness.
+- **Augmentation**: Techniques such as rotation, flipping, zooming, and brightness adjustment will be applied to double the size of the training set.
 
 ### 3. Modeling
 
-- **Convolutional Neural Networks**: A CNN will be implemented as the core model.
-- **Transfer Learning**: Pre-trained models such as ResNet, EfficientNet, or InceptionNet will be fine-tuned for this classification task.
+- **Convolutional Neural Networks**: A CNN SOTA will be implemented as the core model.
+- **Transfer Learning**: Pre-trained models such as ResNet, ConvNeXtLarge will be fine-tuned for this classification task.
 - **Iteration**: Multiple experiments will be conducted to optimize hyperparameters, architecture, and preprocessing steps to achieve the best performance.
 
 ### 4. API Development
@@ -54,6 +54,8 @@ The dataset used for this project is sourced from Kaggle and can be accessed [he
 ## Deployment
 
 The final application will be deployed on a cloud platform, ensuring accessibility and scalability. Docker containers will be used for seamless deployment.
+
+Link of the web application: https://skinlensweb-35zsxjyv5xmpcefkqtzgu5.streamlit.app/
 
 ## Future Improvements
 
